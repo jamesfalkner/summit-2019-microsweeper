@@ -19,9 +19,6 @@ public class ScoreboardResource {
     @Inject
     ScoreboardService scoreboardService;
 
-    @Inject
-    io.opentracing.Tracer tracer;
-
     final Logger logger = LoggerFactory.getLogger(getClass());
 
     @GET
