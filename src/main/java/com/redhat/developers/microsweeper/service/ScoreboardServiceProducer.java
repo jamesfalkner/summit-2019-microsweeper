@@ -4,8 +4,6 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.opentracing.Tracer;
-
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -18,12 +16,9 @@ public class ScoreboardServiceProducer {
     @Inject
     @ConfigProperty(name = "cosmosdb.uri")
     Optional<String> cosmosdbUri;
-
-    // @Inject
-    // Tracer tracer;
     
-    @ApplicationScoped
     @Produces
+    @ApplicationScoped
     public ScoreboardService scoreboardService() {
         logger.info("Cosmos DB URI: " + cosmosdbUri.orElse("!!UNSET!!"));
         if (cosmosdbUri.isPresent() && cosmosdbUri.get().startsWith("mongodb://")) {

@@ -60,13 +60,13 @@
       <artifactId>opentracing-mongo-driver</artifactId>
       <version>0.1.2</version>
   </dependency>
+  <dependency>
+    <groupId>io.quarkus</groupId>
+    <artifactId>quarkus-smallrye-opentracing</artifactId>
+  </dependency>
    <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-jsonb</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkus</groupId>
-      <artifactId>quarkus-smallrye-opentracing</artifactId>
     </dependency>
   </dependencies>
   <build>

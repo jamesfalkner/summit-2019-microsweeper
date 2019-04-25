@@ -1,12 +1,7 @@
 package com.redhat.developers.microsweeper.model;
 
-import org.bson.Document;
-
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
-import javax.persistence.*;
-import java.util.HashMap;
-import java.util.Map;
+import javax.persistence.Entity;
 
 @Entity
 public class Score extends PanacheEntity {
@@ -21,23 +16,4 @@ public class Score extends PanacheEntity {
     public String toString() {
         return name + "/" + level + "/" + time + "/" + success + "/" + scoreId;
     }
-
-    public Map<String, Object> toMap() {
-        Map<String, Object> obj = new HashMap<>();
-        obj.put("name", name);
-        obj.put("level", level);
-        obj.put("time", time);
-        obj.put("success", success);
-        return obj;
-    }
-
-    public static Score fromDocument(Document d) {
-        Score score = new Score();
-        score.name = (d.getString("name"));
-        score.level = (d.getString("level"));
-        score.time = (d.getInteger("time"));
-        score.success = (d.getBoolean("success"));
-        return score;
-    }
-
 }
