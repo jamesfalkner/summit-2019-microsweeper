@@ -25,9 +25,8 @@ public class ScoreboardServiceProducer {
     @ApplicationScoped
     @Produces
     public ScoreboardService scoreboardService() {
-        String environment = System.getenv().get("ENVIRONMENT");
         logger.info("Cosmos DB URI: " + cosmosdbUri.orElse("!!UNSET!!"));
-        if ("PRODUCTION".equals(environment)) {
+        if (cosmosdbUri.isPresent() && cosmosdbUri.get().startsWith("mongodb://")) {
             logger.info("Instantiating a COSMOSDB Scoreboard Service");
             return new CosmosDbScoreboardService(cosmosdbUri.orElseThrow(() -> new IllegalStateException("COSMOSDB_URI property is required")));
         } else {
