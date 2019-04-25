@@ -182,14 +182,19 @@ function addScore(score) {
 
   let tbody = document.getElementById('scoretablebody');
   var row = document.createElement("tr");
-  ['name', 'time', 'level', 'success'].forEach(function(col) {
+  ['name', 'time', 'level', 'success'].forEach(function(col, idx) {
     var cell = document.createElement("td");
     cell.className = 'menu';
     let cellText = document.createTextNode(score[col]);
+    if (idx == 0) {
+      cell.className += ' boldText';
+    }
     cell.appendChild(cellText);
     row.appendChild(cell);
   });
   tbody.appendChild(row);
+
+  altRows('scoretable');
 
 }
 
@@ -372,6 +377,31 @@ function runCodeForAllCells(cb) {
       cb(cell);
     });
   });
+}
+
+function altRows(id){
+  if(document.getElementsByTagName){  
+      
+      var table = document.getElementById(id);  
+      var rows = table.getElementsByTagName("tr"); 
+      console.log("table: " + table, " length: " + rows.length);
+       
+      for(i = 0; i < rows.length; i++){  
+          var cn;
+
+          if(i % 2 == 0){
+              rows[i].className += (cn = " evenrowcolor");
+          }else{
+              rows[i].className += (cn = " oddrowcolor");
+          }   
+          
+          var datas = rows[i].getElementsByTagName("td");
+          for (j = 0; j < datas.length; j++) {
+            datas[j].className += cn;
+          }
+
+      }
+  }
 }
 
 init();
